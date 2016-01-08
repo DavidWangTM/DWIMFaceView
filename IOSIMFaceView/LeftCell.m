@@ -25,7 +25,7 @@
     CGRect rect = [_str boundingRectWithSize:CGSizeMake((SCREENWITH-HEAD_SIZE-3*INSETS-40), TEXT_MAX_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
     CGSize textSize = rect.size;
     _contentLab.attributedText = _str;
-    [_contentLab setFrame:CGRectMake(10, 20, textSize.width + 5, textSize.height)];
+    [_contentLab setFrame:CGRectMake(10, 20, textSize.width, textSize.height)];
     [_contentLab sizeToFit];
     
     [_contentBg setImage:[[UIImage imageNamed:@"ReceiverTextNodeBkg"]stretchableImageWithLeftCapWidth:20 topCapHeight:30]];

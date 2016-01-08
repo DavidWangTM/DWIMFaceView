@@ -102,7 +102,7 @@
         cell.str = info.content;
         cell.timeLab.text = info.time;
         [cell.timeLab sizeToFit];
-        cell.timeView.frame = CGRectMake(cell.frame.size.width/2 - (cell.timeLab.frame.size.width + 30)/2, cell.timeView.frame.origin.y, cell.timeLab.frame.size.width + 30, cell.timeView.frame.size.height);
+        cell.timeView.frame = CGRectMake(cell.frame.size.width/2 - (cell.timeLab.frame.size.width + 35)/2, cell.timeView.frame.origin.y, cell.timeLab.frame.size.width + 30, cell.timeView.frame.size.height);
         cell.timeLab.center = CGPointMake(cell.timeView.frame.size.width/2, cell.timeView.frame.size.height/2);
         
         return cell;
@@ -112,7 +112,7 @@
         cell.str = info.content;
         cell.timeLab.text = info.time;
         [cell.timeLab sizeToFit];
-        cell.timeView.frame = CGRectMake(cell.frame.size.width/2 - (cell.timeLab.frame.size.width + 30)/2, cell.timeView.frame.origin.y, cell.timeLab.frame.size.width + 30, cell.timeView.frame.size.height);
+        cell.timeView.frame = CGRectMake(cell.frame.size.width/2 - (cell.timeLab.frame.size.width + 35)/2, cell.timeView.frame.origin.y, cell.timeLab.frame.size.width + 30, cell.timeView.frame.size.height);
         cell.timeLab.center = CGPointMake(cell.timeView.frame.size.width/2, cell.timeView.frame.size.height/2);
         return cell;
     }
