@@ -178,10 +178,8 @@
     [self textViewDidChange:_contentText];
     SessionModel *info = [SessionModel new];
     info.content = str;
-    
-    info.sendType = Isend;
-    
-    
+    int i = random() % 2;
+    info.sendType = i;
     info.time = [TimeTool getDialTimeStr:[[TimeTool getNowTimeStr] longLongValue]];
     [data addObject:info];
     [_tableView reloadData];
