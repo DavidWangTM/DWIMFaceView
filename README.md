@@ -4,7 +4,7 @@ IOSIMFaceView 是IM对话中有表情输入和对话框表情显示。
 ## Preview
 
 ![image](https://raw.githubusercontent.com/DavidWangTM/IOSIMFaceView/master/nice.gif)
-## instructions
+## Instructions
 
 Face文件在expression中
 ```Objective-C
@@ -14,6 +14,8 @@ Face文件在expression中
 	#define FACE_NAME_LEN   5
   
 ```
+
+## Usage
 
 文本插入表情主要代码：
 ```Objective-C
