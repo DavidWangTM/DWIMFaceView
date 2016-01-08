@@ -17,11 +17,12 @@
 #import "SessionModel.h"
 #import "TimeTool.h"
 
-#define FACE_NAME_HEAD  @"["
+
 
 #define LINENUMBER 10
 
-// 表情转义字符的长度（ /s占2个长度，xxx占3个长度，共5个长度 ）
+#define FACE_NAME_HEAD  @"["
+// 表情转义字符的长度（ [占1个长度，xxx占3个长度，共5个长度 ）
 #define FACE_NAME_LEN   5
 
 #define FACE_COUNT_ALL  85
