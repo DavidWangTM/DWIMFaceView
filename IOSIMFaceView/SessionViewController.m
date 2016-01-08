@@ -59,7 +59,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     pageNum = 0;
-    typestatus = 0;
+    typestatus = defaultstatus;
     data = [NSMutableArray new];
     topstatus = 0;
     is_one = YES;
@@ -123,16 +123,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (typestatus == 1) {
+    if (typestatus == keyboardup) {
         [self.view endEditing:YES];
-    }else if (typestatus == 2) {
+    }else if (typestatus == faceup) {
         [UIView animateWithDuration:0.3 animations:^{
             _emojiView.frame = CGRectMake(_emojiView.frame.origin.x, SCREENHEIGHT, _emojiView.frame.size.width, _emojiView.frame.size.height);
             _containerView.frame = CGRectMake(_containerView.frame.origin.x, _containerView.frame.origin.y, _containerView.frame.size.width, SCREENHEIGHT);
         } completion:^(BOOL finished) {
             _emojiView.hidden = YES;
         }];
-        typestatus = 0;
+        typestatus = defaultstatus;
     }
     
 }
@@ -198,37 +198,37 @@
 }
 
 -(void)showExpression{
-    if (typestatus == 0) {
+    if (typestatus == defaultstatus) {
         _emojiView.hidden = NO;
         [UIView animateWithDuration:0.3 animations:^{
             _emojiView.frame = CGRectMake(_emojiView.frame.origin.x, SCREENHEIGHT - _emojiView.frame.size.height, _emojiView.frame.size.width, _emojiView.frame.size.height);
             _containerView.frame = CGRectMake(_containerView.frame.origin.x, _containerView.frame.origin.y, _containerView.frame.size.width, SCREENHEIGHT - _emojiView.frame.size.height);
         }];
-        typestatus = 2;
+        typestatus = faceup;
         if (data.count != 0) {
             NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:(data.count -1)  inSection:0];
             [_tableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         }
-    }else if (typestatus == 1){
+    }else if (typestatus == keyboardup){
         [self.view endEditing:YES];
         _emojiView.hidden = NO;
         [UIView animateWithDuration:0.3 animations:^{
             _emojiView.frame = CGRectMake(_emojiView.frame.origin.x, SCREENHEIGHT - _emojiView.frame.size.height, _emojiView.frame.size.width, _emojiView.frame.size.height);
             _containerView.frame = CGRectMake(_containerView.frame.origin.x, _containerView.frame.origin.y, _containerView.frame.size.width, SCREENHEIGHT - _emojiView.frame.size.height);
         }];
-        typestatus = 2;
+        typestatus = faceup;
         if (data.count != 0) {
             NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:(data.count -1)  inSection:0];
             [_tableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         }
-    }else if(typestatus == 2){
+    }else if(typestatus == keyboardup){
         [UIView animateWithDuration:0.3 animations:^{
             _emojiView.frame = CGRectMake(_emojiView.frame.origin.x, SCREENHEIGHT, _emojiView.frame.size.width, _emojiView.frame.size.height);
             _containerView.frame = CGRectMake(_containerView.frame.origin.x, _containerView.frame.origin.y, _containerView.frame.size.width, SCREENHEIGHT);
         } completion:^(BOOL finished) {
             _emojiView.hidden = YES;
         }];
-        typestatus = 0;
+        typestatus = defaultstatus;
     }
 }
 
@@ -236,7 +236,7 @@
 
 //Code from Brett Schumann
 -(void) keyboardWillShow:(NSNotification *)note{
-    if (typestatus == 2) {
+    if (typestatus == faceup) {
         [UIView animateWithDuration:0.3 animations:^{
             _emojiView.frame = CGRectMake(_emojiView.frame.origin.x, SCREENHEIGHT, _emojiView.frame.size.width, _emojiView.frame.size.height);
             _containerView.frame = CGRectMake(_containerView.frame.origin.x, _containerView.frame.origin.y, _containerView.frame.size.width, SCREENHEIGHT);
@@ -270,7 +270,7 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(keyboardBounds.size.height + 64, 0, 0, 0)];
     // commit animations
     [UIView commitAnimations];
-    typestatus = 1;
+    typestatus = keyboardup;
     
     
 }
@@ -295,8 +295,8 @@
     // commit animations
     [UIView commitAnimations];
     
-    if (typestatus == 1) {
-        typestatus = 0;
+    if (typestatus == keyboardup) {
+        typestatus = defaultstatus;
     }
     
 }
@@ -304,7 +304,17 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     if (scrollView  == _tableView) {
-        [self.view endEditing:YES];
+        if (typestatus == keyboardup) {
+            [self.view endEditing:YES];
+        }else if (typestatus == faceup) {
+            [UIView animateWithDuration:0.3 animations:^{
+                _emojiView.frame = CGRectMake(_emojiView.frame.origin.x, SCREENHEIGHT, _emojiView.frame.size.width, _emojiView.frame.size.height);
+                _containerView.frame = CGRectMake(_containerView.frame.origin.x, _containerView.frame.origin.y, _containerView.frame.size.width, SCREENHEIGHT);
+            } completion:^(BOOL finished) {
+                _emojiView.hidden = YES;
+            }];
+            typestatus = defaultstatus;
+        }
     }
 }
 

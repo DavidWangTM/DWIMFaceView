@@ -16,6 +16,11 @@
 
 #define IRead 0
 
+//0为正常状态,1为键盘上,2为表情上
+#define defaultstatus 0
+#define keyboardup 1
+#define faceup 2
+
 //头像大小
 #define HEAD_SIZE 40.0f
 #define TEXT_MAX_HEIGHT 500.0f
